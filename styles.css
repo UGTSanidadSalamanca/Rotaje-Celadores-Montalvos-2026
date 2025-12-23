@@ -1,0 +1,72 @@
+
+body { 
+    font-family: 'Inter', sans-serif; 
+    height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+    overflow: hidden;
+}
+
+.cell-transition {
+    transition: all 0.1s ease-in-out;
+}
+
+/* Ocultar scrollbar en la tabla */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Sticky headers */
+thead th { position: sticky; top: 0; z-index: 30; }
+.sticky-left { position: sticky; left: 0; z-index: 20; }
+
+@media (max-width: 768px) {
+    .mobile-order-swap { display: flex; flex-direction: column; }
+    .grid-container { order: 1; height: 65vh; }
+    .summary-container { order: 2; }
+}
+
+/* Optimizaciones para PDF / Impresión */
+@media print {
+    @page { 
+        size: landscape; 
+        margin: 0.5cm; 
+    }
+    header, footer, button, .no-print { 
+        display: none !important; 
+    }
+    body { 
+        background: white !important; 
+        height: auto !important; 
+        overflow: visible !important;
+    }
+    .grid-container { 
+        height: auto !important; 
+        overflow: visible !important; 
+    }
+    .summary-container { 
+        display: block !important;
+        background: white !important; 
+        border: 1px solid #ddd !important; 
+        margin-top: 10px !important; 
+        padding: 10px !important;
+    }
+    table { 
+        border-collapse: collapse !important; 
+        width: 100% !important; 
+        font-size: 7px !important; 
+    }
+    th, td { 
+        border: 1px solid #ccc !important; 
+        height: auto !important;
+        padding: 2px !important;
+    }
+    .sticky, .sticky-left { 
+        position: static !important; 
+    }
+    /* Forzar colores en el PDF */
+    .bg-slate-900 { background-color: #1e293b !important; color: white !important; -webkit-print-color-adjust: exact; }
+    .bg-blue-100 { background-color: #dbeafe !important; -webkit-print-color-adjust: exact; }
+    .bg-amber-100 { background-color: #fef3c7 !important; -webkit-print-color-adjust: exact; }
+    .bg-indigo-900 { background-color: #312e81 !important; color: white !important; -webkit-print-color-adjust: exact; }
+    .bg-emerald-50 { background-color: #ecfdf5 !important; -webkit-print-color-adjust: exact; }
+}
